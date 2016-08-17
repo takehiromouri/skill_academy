@@ -5,4 +5,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, presence: true
+
+  has_many :courses
+  has_many :enrollments
+
+  mount_uploader :photo, PhotoUploader
+
+  def name
+    self.first_name + " " + self.last_name
+  end
+
+  def enrolled?(course)
+    return true if Enrollment.where(course_id: course.id, user_id: self.id)
+    false
+  end
 end

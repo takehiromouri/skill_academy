@@ -1,0 +1,26 @@
+.user-info-stats {
+  display: inline-block;
+  margin-top: 40px;
+  ul {
+    list-style-type: none;
+    padding-left: 0px;
+    li {
+      display: inline-block;
+      padding: 10px 20px;
+      // background: #00b3fe;
+      // color: white;
+      text-align: center;
+    }
+  }
+
+  .stats {
+    font-size: 35px;
+    color: #00b3fe;
+  }
+}
+
+.course-list {
+  padding: 30px;
+  margin-top: 50px;
+  border-top: 3px dotted #f7f7f7;
+}

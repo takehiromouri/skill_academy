@@ -30,7 +30,12 @@ gem 'bootstrap_form'
 # user authentication
 gem 'devise'
 
-gem 'factory_girl'
+gem "factory_girl_rails", "~> 4.0"
+
+gem 'simple_form'
+
+# photo uploading
+gem 'carrierwave'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

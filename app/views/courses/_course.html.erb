@@ -1,0 +1,12 @@
+<div class="course-box text-center">
+    
+  <%= image_tag course.photo, class: 'img-responsive' %>    
+
+  <h3><%= link_to course.title, course_path(course) %></h3>
+  <p><%= course.description %></p>
+
+  <h4><%= display_datetime(course.start_time) %></h4>
+  <h4><%= course.user.name %></h4>
+  <label class="label label-primary"><%= course.category %></label>
+  
+</div><!-- course-box -->

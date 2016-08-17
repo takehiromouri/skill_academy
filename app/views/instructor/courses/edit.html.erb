@@ -1,0 +1,15 @@
+<h1 class="text-center">Edit Course</h1>
+
+<%= simple_form_for @course, url: instructor_course_path(@course) do |f| %>
+  <%= f.input :title, placeholder: 'Title of Course' %>
+  <%= f.input :description, placeholder: 'Description of Course' %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :category, collection: Course.categories.keys.map(&:capitalize) %>
+  <%= f.input :price %>
+  <%= f.input :target, placeholder: 'Who is this event for? Ex) Students who want to learn Ruby on Rails.' %>
+  <%= f.input :location, placeholder: 'Location of Event' %>
+  <%= f.input :address, placeholder: 'Address of Event' %>
+  <%= f.input :photo %>
+  <%= f.submit class: 'btn btn-primary', data: { disable_with: "Updating course..." } %>
+<% end %>
