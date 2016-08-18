@@ -8,13 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">SKILL ACADEMY</a>
+      <%= link_to 'SKILL ACADEMY', root_path, class: 'navbar-brand' %>      
     </div>
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
 
         <% if user_signed_in? %>
-          <li><%= link_to 'ALL COURSES', courses_path %></li>
+          <li><%= link_to 'FIND COURSES', courses_path %></li>
+          <li><%= link_to 'ENROLLED COURSES', user_courses_path %></li>
           <li><%= link_to 'MY COURSES', instructor_courses_path %></li>
           <li><%= link_to 'TEACH A COURSE', new_instructor_course_path %></li>
           <li><%= link_to 'EDIT PROFILE', edit_user_registration_path %></li>
@@ -26,15 +27,7 @@
           <li><a href="contact.html">CONTACT</a></li>
           <li><%= link_to 'SIGN IN', new_user_session_path %></li>
           <li><%= link_to 'SIGN UP', new_user_registration_path %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="blog.html">BLOG</a></li>
-              <li><a href="single-post.html">SINGLE POST</a></li>
-              <li><a href="portfolio.html">PORTFOLIO</a></li>
-              <li><a href="single-project.html">SINGLE PROJECT</a></li>
-            </ul>
-          </li>
+          
 
         <% end %>
       </ul>

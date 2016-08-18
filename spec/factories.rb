@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :rating do
+    stars 5
+    comment "Awesome!"    
+  end
+
   factory :enrollment do
     
   end

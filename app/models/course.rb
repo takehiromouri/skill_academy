@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
 
   belongs_to :user
   has_many :enrollments
+  has_many :ratings
 
   enum category: [:Business, :Programming, :Design, :Excel, :Presentations]
 

@@ -26,8 +26,7 @@
           </p>
         </div><!-- col-xs-12 col-md-9 -->
       </div><!-- row -->
-      
-        
+
     </div><!-- well -->
 
   </div>
@@ -74,11 +73,22 @@
         <li>
           <%= link_to 'UNENROLL FROM COURSE', course_enrollment_path(course_id: @course.id, id: @enrollment.id), method: :delete, class: 'btn btn-danger' %>
         </li> 
-      <% else %>      
+      <% elsif @course.user != current_user %>      
         <li>
           <%= link_to 'ENROLL IN THIS COURSE', course_enrollments_path(@course.id), method: :post, class: 'btn btn-danger' %>
         </li> 
       <% end %>
+
+      <h3>RATE THIS COURSE</h3>
+
+      <div id="rating-form-container">
+        <%= simple_form_for Rating.new, url: course_ratings_path(@course), remote: true do |f| %>
+          <%= f.input :stars, collection: Rating::STARS.values %>
+          <%= f.input :comment %>
+          <%= f.submit, class: 'btn btn-primary', data: { disable_with: "Adding Rating..." } %>
+        <% end %>
+      </div>
+
     </ul>
   </div>
 </div>

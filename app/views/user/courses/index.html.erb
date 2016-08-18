@@ -1,0 +1,11 @@
+<div class="title-box text-center">
+  <h1>My Enrolled Courses</h1>
+</div>
+
+<div class="row">
+  <% @courses.each do |course| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <%= render partial: 'courses/course', locals: { course: course } %>
+    </div><!-- col-xs-12 col-sm-6 col-md-4 -->
+  <% end %>
+</div>
