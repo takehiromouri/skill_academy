@@ -1,8 +1,14 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
 
+  impressionist actions: [:show]
+
   def index
-    @courses = Course.all
+    if params[:query].present?
+      @courses = Course.search(params[:query]).records
+    else  
+      @courses = Course.all
+    end
   end
 
   def show

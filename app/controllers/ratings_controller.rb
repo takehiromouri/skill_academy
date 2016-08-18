@@ -4,6 +4,7 @@ class RatingsController < ApplicationController
 
   def create
     @rating = current_user.ratings.create(rating_params)
+    # send email
   end
 
   private

@@ -1,12 +1,16 @@
 <div class="course-box text-center">
-    
-  <%= image_tag course.photo, class: 'img-responsive' %>    
+  
+  <div class="course-box-image">
+    <%= image_tag course.photo, class: 'img-responsive center-block' %>    
+  </div>
 
   <h3><%= link_to course.title, course_path(course) %></h3>
-  <p><%= course.description %></p>
+  <p><%= truncate course.description, length: 80, omission: '... (read more)' %></p>
 
   <h4><%= display_datetime(course.start_time) %></h4>
   <h4><%= course.user.name %></h4>
   <label class="label label-primary"><%= course.category %></label>
+  <%= content_tag :h4, "<i class='fa fa-star-o'></i> #{course.average_rating}".html_safe if course.average_rating > 0 %>
+  <%= content_tag :h4, "<i class='fa fa-eye'></i> #{course.impressionist_count}".html_safe %>
   
 </div><!-- course-box -->

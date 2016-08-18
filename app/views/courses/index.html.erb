@@ -3,6 +3,11 @@
   <p>
     Find a skill you want to learn.
   </p>
+
+  <%= form_tag courses_path, method: :get, class: 'form-inline' do %>
+      <%= text_field_tag :query, params[:query], placeholder: 'Search for a course', class: 'form-control' %>
+      <%= submit_tag "Search", name: nil, class: 'btn btn-danger' %>
+  <% end %>
 </div>
 
 <div class="row">

@@ -2,6 +2,7 @@
   <h1>My Enrolled Courses</h1>
 </div>
 
+<% if @courses.present? %>
 <div class="row">
   <% @courses.each do |course| %>
     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -9,3 +10,15 @@
     </div><!-- col-xs-12 col-sm-6 col-md-4 -->
   <% end %>
 </div>
+
+<% else %>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-offset-1 col-md-6 col-md-offset-3">
+      <h3 class="text-center">You have not enrolled in any courses yet!</h3>
+
+      <h2 class="text-center">Getting started is easy. <br>Just click the button below.</h2>
+      <%= link_to 'FIND COURSES', courses_path, class: 'btn btn-info btn-block' %>
+    </div>
+  </div>
+<% end %>

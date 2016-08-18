@@ -27,6 +27,7 @@ FactoryGirl.define do
     target "Target"
     location "TECHRISE Office"
     address "Kupondole, Jwagal"
+    average_rating 4
   end
 
   factory :invalid_course, class: 'Course' do

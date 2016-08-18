@@ -37,6 +37,13 @@ gem 'simple_form'
 # photo uploading
 gem 'carrierwave'
 
+# elasticsearch
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+
+# impressionist
+gem 'impressionist'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

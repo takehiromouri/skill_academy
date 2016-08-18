@@ -2,15 +2,13 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-8">
-    <p><%= @course.description %></p>
+    <p><%= simple_format @course.description %></p>
 
     <hr>
 
     <h3 class="text-center">About the Instructor</h3>
 
-    <div class="well">
-      
-
+    <div class="instructor-box">
       <div class="row">
         <div class="col-xs-12 col-md-3">
           <%= image_tag @instructor.photo, class: 'prof-pic' %>
@@ -26,8 +24,20 @@
           </p>
         </div><!-- col-xs-12 col-md-9 -->
       </div><!-- row -->
+    </div><!-- instructor-box -->
 
-    </div><!-- well -->
+
+    <section class="student-reviews">
+      <h3 class="text-center">Student Reviews</h3>
+
+      <% if @course.ratings.present? %>
+        <div id="ratings-container">
+          <%= render partial: "ratings", locals: {ratings: @course.ratings} %>
+        </div>
+      <% else %>
+        <h4 class="text-center">There are no reviews for this course yet!</h4>
+      <% end %> 
+    </section><!-- student-reviews -->
 
   </div>
 
@@ -79,15 +89,19 @@
         </li> 
       <% end %>
 
-      <h3>RATE THIS COURSE</h3>
+      <% unless current_user.ratings.where(course_id: @course.id).present? %>
 
-      <div id="rating-form-container">
-        <%= simple_form_for Rating.new, url: course_ratings_path(@course), remote: true do |f| %>
-          <%= f.input :stars, collection: Rating::STARS.values %>
-          <%= f.input :comment %>
-          <%= f.submit, class: 'btn btn-primary', data: { disable_with: "Adding Rating..." } %>
-        <% end %>
-      </div>
+        <h3>RATE THIS COURSE</h3>
+
+        <div id="rating-form-container">
+          <%= simple_form_for Rating.new, url: course_ratings_path(@course), remote: true do |f| %>
+            <%= f.input :stars, collection: Rating::STARS %>
+            <%= f.input :comment %>
+            <%= f.submit class: 'btn btn-primary', data: { disable_with: "Adding Rating..." } %>
+          <% end %>
+        </div>      
+
+      <% end %>
 
     </ul>
   </div>

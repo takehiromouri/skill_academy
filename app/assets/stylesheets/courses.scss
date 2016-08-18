@@ -1,3 +1,20 @@
+.instructor-box {
+  margin-top: 30px;
+  border: 2px dotted #384452;
+  padding: 30px;
+  background: #fcf8e3;
+}
+
+.student-reviews {
+  margin-top: 50px;
+}
+
+#ratings-container {
+  margin-top: 30px;
+  border-top: 5px dotted #fff;
+  padding-top: 50px;
+}
+
 .course-details {
   list-style-type: none;
   background: #f7f7f7;
@@ -10,4 +27,19 @@
 .course-box {
   border: 1px solid #999;
   padding-bottom: 20px;
+}
+
+.course-box-image {
+  border-bottom: 2px solid #f7f7f7; 
+}
+
+.rating-box {
+  background: #f7f7f7;
+  min-height: 100px;
+  padding: 20px;
+  height: auto;
+  overflow: auto;
+  p {
+    font-size: 20px;
+  }
 }
