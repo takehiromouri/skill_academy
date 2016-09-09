@@ -30,7 +30,7 @@ class EnrollmentsController < ApplicationController
   private
 
   def check_instructor
-    return unless Course.find(params[:course_id]).user == current_user
+    return unless Course.find(params[:course_id]).instructor == current_user
     flash[:danger] = "Woops! You can't sign up for your own courses!"
     redirect_to course_path(params[:course_id])
   end

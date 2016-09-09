@@ -44,6 +44,11 @@
   <div class="col-xs-12 col-md-4">
     <ul class="course-details"> 
       <li>
+        <strong>Number of Enrolled Students</strong><br>
+        <%= @course.enrollments_count %>
+      </li>
+
+      <li>
         <strong>Price</strong><br>
         <%= @course.price %>
       </li>
@@ -73,7 +78,7 @@
         <%= @course.address %>
       </li>
 
-      <% if @course.user == current_user %>
+      <% if @instructor == current_user %>
         <li>
           <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Details'.html_safe, edit_instructor_course_path(@course), class: 'btn btn-default btn-sm' %>
         </li> 
@@ -83,7 +88,7 @@
         <li>
           <%= link_to 'UNENROLL FROM COURSE', course_enrollment_path(course_id: @course.id, id: @enrollment.id), method: :delete, class: 'btn btn-danger' %>
         </li> 
-      <% elsif @course.user != current_user %>      
+      <% elsif @instructor != current_user %>      
         <li>
           <%= link_to 'ENROLL IN THIS COURSE', course_enrollments_path(@course.id), method: :post, class: 'btn btn-danger' %>
         </li> 

@@ -9,11 +9,21 @@ class Course < ActiveRecord::Base
   validates :title, :description, :price, :start_time, :end_time, :category, :user_id, :location, presence: true
   validates :price, numericality: { greater_than: 0 }
 
-  belongs_to :user
+  belongs_to :instructor, class_name: "User", foreign_key: :user_id
   has_many :enrollments
   has_many :ratings
 
+  delegate :name, to: :instructor, prefix: true
+
   enum category: [:Business, :Programming, :Design, :Excel, :Presentations]
+
+  SORTABLE = {
+    :price => "Price", 
+    :created_at => "Posted", 
+    :average_rating => "Average Rating",
+    :start_time => "Start Time",
+    :views => "Views"
+  }
 
   mount_uploader :photo, PhotoUploader
 

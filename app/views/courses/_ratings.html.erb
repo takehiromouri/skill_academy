@@ -2,7 +2,7 @@
   <div class="row">
     <div class="rating-box">
       <div class="col-xs-12 col-sm-4 text-center">
-        <%= image_tag rating.user.photo, class: 'prof-pic-md img-circle' %>
+        <%= image_tag rating.user_photo, class: 'prof-pic-md img-circle' %>
         <br>
         <h6><%= rating.user.name %></h6>
         <%= Rating::STARS.key(rating.stars) %>

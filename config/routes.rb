@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:index, :show] do
     resources :enrollments, only: [:create, :destroy]
-    resources :ratings, only: [:create, :destroy]
+    resources :ratings, only: [:create]
   end
+
+  resources :ratings, only: :destroy
 
   namespace :instructor do
     resources :courses

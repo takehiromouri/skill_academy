@@ -39,7 +39,7 @@ class Instructor::CoursesController < ApplicationController
 
   def check_instructor
     @course = Course.find(params[:id])
-    return if @course.user == current_user
+    return if @course.instructor == current_user
     flash[:alert] = "Too bad, you're unauthorized!"
     redirect_to courses_path
   end

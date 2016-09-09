@@ -4,10 +4,34 @@
     Find a skill you want to learn.
   </p>
 
-  <%= form_tag courses_path, method: :get, class: 'form-inline' do %>
-      <%= text_field_tag :query, params[:query], placeholder: 'Search for a course', class: 'form-control' %>
-      <%= submit_tag "Search", name: nil, class: 'btn btn-danger' %>
-  <% end %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <%= simple_form_for :course, url: courses_path, method: :get, class: 'form-inline' do |f| %>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <%= f.input :sort_by_column, collection: Course::SORTABLE.map{|k,v| [v,k]}, label: false, class: 'form-control', include_blank: false %>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <%= f.input :sort_order, collection: {"Ascending" => :ASC, "Descending" => :DESC}, label: false, class: 'form-control', include_blank: false %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <%= form_tag courses_path, method: :get, class: 'form-inline' do %>
+        <%= text_field_tag :query, params[:query], placeholder: 'Search for a course', class: 'form-control' %>
+        <%= submit_tag "Search", name: nil, class: 'btn btn-info' %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">      
+      <%= simple_form_for :course, url: courses_path, method: :get, class: 'form-inline' do |f| %>
+        <%= f.input :category, collection: Course.categories.keys, label: false, class: 'form-control', include_blank: false %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div class="row">
@@ -17,3 +41,9 @@
     </div><!-- col-xs-12 col-sm-6 col-md-4 -->
   <% end %>
 </div>
+
+<script type="text/javascript">
+$('form').on('change', function(){
+  $(this).trigger('submit.rails');
+});
+</script>
