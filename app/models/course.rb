@@ -12,6 +12,8 @@ class Course < ActiveRecord::Base
   belongs_to :instructor, class_name: "User", foreign_key: :user_id
   has_many :enrollments
   has_many :ratings
+  has_many :sections
+  has_many :lessons, through: :sections
 
   delegate :name, to: :instructor, prefix: true
 

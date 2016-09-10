@@ -1,4 +1,13 @@
 FactoryGirl.define do
+  factory :lesson do
+    title "Lesson title"
+    content "Lesson content"
+  end
+
+  factory :section do
+    title "Section title"
+  end
+  
   factory :rating do
     stars 5
     comment "Awesome!"    

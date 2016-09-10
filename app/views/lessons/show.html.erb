@@ -1,0 +1,18 @@
+<%= link_to 'Back to Course', course_path(@lesson.course) %>
+
+<h1><%= @lesson.title %></h1>
+
+
+<div class="lesson-content">
+  <%= sanitize @lesson.content %>
+</div>
+
+<div class="lesson-nav">
+  <%= link_to 'Next Lesson', course_lesson_path(@lesson.course, @lesson.next), class: 'btn btn-sm btn-primary' if @lesson.next %>
+  <%= link_to 'Previous Lesson', course_lesson_path(@lesson.course, @lesson.previous), class: 'btn btn-sm btn-warning' if @lesson.previous %>
+
+  <% unless @lesson.next %>
+    <p class="text-center">END OF SECTION</p>
+    <%= link_to 'Next Section', course_lesson_path(@lesson.course, @lesson.section.next.first_lesson), class: 'btn btn-primary' if @lesson.section.next %>
+  <% end %>
+</div>

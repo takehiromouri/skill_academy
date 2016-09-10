@@ -12,6 +12,32 @@ RSpec.describe Instructor::CoursesController, type: :controller do
     end
   end
 
+  describe "GET #show" do
+    context "user is instructor" do
+      it "displays the show template" do
+        user = FactoryGirl.create(:user)
+        course = FactoryGirl.create(:course, user_id: user.id)
+
+        sign_in user
+        get :show, id: course.id
+
+        expect(response.status).to render_template :show
+      end
+    end 
+
+    context "user is not instructor" do
+      it "redirects user to root_path" do
+        user = FactoryGirl.create(:user)
+        course = FactoryGirl.create(:course, user_id: user.id + 1)
+
+        sign_in user
+        get :show, id: course.id
+
+        expect(response.status).to redirect_to courses_path
+      end
+    end
+  end
+
   describe "GET #new" do
     context "user is signed in" do
       it "renders the new template" do

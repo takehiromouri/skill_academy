@@ -23,9 +23,15 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.includes(:ratings).find(params[:id])
+    @course = current_course
     @instructor = @course.instructor
     @enrollment = current_user.enrollments.find_by(course_id: @course.id)
+  end
+
+  private
+
+  def current_course
+    @current_course ||= Course.includes(:ratings).find(params[:id])
   end
 
 end

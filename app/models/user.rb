@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
+  def enrolled_in?(course)
+    enrollments.where(course: course).present?
+  end
+
   def name
     self.first_name + " " + self.last_name
   end

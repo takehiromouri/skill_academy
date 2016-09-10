@@ -1,6 +1,6 @@
 class Instructor::CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_instructor, only: [:edit, :update]
+  before_action :check_instructor, only: [:show, :edit, :update]
 
   def index
     @courses = current_user.courses.all
@@ -8,6 +8,11 @@ class Instructor::CoursesController < ApplicationController
 
   def new
     @course = Course.new
+  end
+
+  def show
+    @course = Course.includes(:sections, :lessons).find(params[:id])
+    @instructor = @course.instructor
   end
 
   def create

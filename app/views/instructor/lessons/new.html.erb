@@ -1,0 +1,8 @@
+<h3>Create new lesson for <%= @section.title %></h3>
+
+<%= simple_form_for @lesson, url: instructor_section_lessons_path(params[:section_id]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content %>
+  <%= f.submit "Submit", class: 'btn btn-primary', data: { disable_with: "Creating new lesson..." }  %>
+<% end %>
+

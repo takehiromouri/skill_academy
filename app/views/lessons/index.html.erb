@@ -1,0 +1,17 @@
+<%= link_to '<i class="fa fa-caret-left" aria-hidden="true"></i> Back to Course Details'.html_safe, @course %>
+
+<h1><%= @course.title %></h1>
+
+<% @sections.each do |section| %>
+        
+  <div class="section-box">
+    <h3><%= section.title %> <%= link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i>'.html_safe, new_instructor_section_lesson_path(section) %></h3>
+    
+    <% section.lessons.each do |lesson| %>
+      <div class="lesson-box">
+        <h4><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></h4>
+      </div>
+    
+    <% end %> 
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<h1 class="text-center"><%= @course.title %></h1>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to 'Create new section', new_instructor_course_section_path(@course) %>
+    <h3>All Lessons</h3>
+
+    <% @course.sections.each do |section| %>
+        
+      <div class="section-box">
+        <h3><%= section.title %> <%= link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i>'.html_safe, new_instructor_section_lesson_path(section) %></h3>
+        
+        <% section.lessons.each do |lesson| %>
+          <div class="lesson-box">
+            <h4><%= link_to lesson.title, course_lesson_path(@course, lesson) %></h4>
+          </div>
+        
+        <% end %> 
+      </div>
+    <% end %>
+    
+  </div>
+</div>

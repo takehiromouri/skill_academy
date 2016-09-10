@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820080418) do
+ActiveRecord::Schema.define(version: 20160910050404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 20160820080418) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
+  create_table "lessons", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "section_id"
+    t.text     "content"
+    t.integer  "row_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "lessons", ["row_order"], name: "index_lessons_on_row_order", using: :btree
+  add_index "lessons", ["section_id"], name: "index_lessons_on_section_id", using: :btree
+
   create_table "ratings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "stars"
@@ -81,6 +93,15 @@ ActiveRecord::Schema.define(version: 20160820080418) do
 
   add_index "ratings", ["course_id"], name: "index_ratings_on_course_id", using: :btree
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sections", ["course_id"], name: "index_sections_on_course_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,7 @@
+<h3>Create new section for <%= @course.title %></h3>
+
+<%= simple_form_for @section, url: instructor_course_sections_path(params[:course_id]) do |f| %>
+  <%= f.input :title %>
+  <%= f.submit "Submit", class: 'btn btn-primary', data: {disable_with: "Creating section..."} %>
+<% end %>
+

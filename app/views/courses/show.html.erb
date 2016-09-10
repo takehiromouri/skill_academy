@@ -1,7 +1,11 @@
 <h1 class="text-center"><%= @course.title %></h1>
 
-<div class="row">
+<div class="row">  
   <div class="col-xs-12 col-md-8">
+    <% if @enrollment.present? || @instructor == current_user %>
+      <%= link_to '<i class="fa fa-caret-right" aria-hidden="true"></i> Go to lessons'.html_safe, course_lessons_path(@course), class: 'btn btn-primary' %>
+    <% end %>
+
     <p><%= simple_format @course.description %></p>
 
     <hr>
@@ -43,7 +47,7 @@
   </div>
 
   <div class="col-xs-12 col-md-4">
-    <ul class="course-details"> 
+    <ul class="course-details">       
       <li>
         <strong>Number of Enrolled Students</strong><br>
         <%= @course.enrollments_count %>
