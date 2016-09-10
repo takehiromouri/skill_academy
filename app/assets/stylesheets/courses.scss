@@ -31,6 +31,10 @@
 
 .course-box-image {
   border-bottom: 2px solid #f7f7f7; 
+  height: 250px;
+  img {
+    height: 100%;
+  }
 }
 
 .rating-box {

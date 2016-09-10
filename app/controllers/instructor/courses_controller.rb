@@ -1,6 +1,6 @@
 class Instructor::CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_instructor, only: [:show, :edit, :update]
+  before_action :authenticate_instructor, only: [:show, :edit, :update]
 
   def index
     @courses = current_user.courses.all
@@ -42,7 +42,7 @@ class Instructor::CoursesController < ApplicationController
 
   private
 
-  def check_instructor
+  def authenticate_instructor
     @course = Course.find(params[:id])
     return if @course.instructor == current_user
     flash[:alert] = "Too bad, you're unauthorized!"

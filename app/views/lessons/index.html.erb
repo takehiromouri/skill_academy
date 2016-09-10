@@ -5,7 +5,7 @@
 <% @sections.each do |section| %>
         
   <div class="section-box">
-    <h3><%= section.title %> <%= link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i>'.html_safe, new_instructor_section_lesson_path(section) %></h3>
+    <h3><%= section.title %></h3>
     
     <% section.lessons.each do |lesson| %>
       <div class="lesson-box">

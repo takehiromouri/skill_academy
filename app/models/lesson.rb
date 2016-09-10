@@ -9,6 +9,6 @@ class Lesson < ActiveRecord::Base
   end
 
   def previous
-    section.lessons.where("id < ?", self.id).first
+    section.lessons.where("id < ?", self.id).last
   end
 end

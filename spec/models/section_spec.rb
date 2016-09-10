@@ -26,6 +26,7 @@ RSpec.describe Section, type: :model do
       it "returns next section" do
         build_course
         next_section = FactoryGirl.create(:section, course_id: @course.id, id: @section.id + 1)
+        next_section_2 = FactoryGirl.create(:section, course_id: @course.id, id: @section.id + 2)
 
         expect(@section.next).to eq(next_section)
       end
@@ -36,6 +37,26 @@ RSpec.describe Section, type: :model do
         build_course
 
         expect(@section.next).to eq(nil)
+      end
+    end
+  end
+
+  describe "#previous" do
+    context "there is previous section" do
+      it "returns previous section" do
+        build_course
+        previous_section = FactoryGirl.create(:section, course_id: @course.id, id: @section.id - 1)
+        previous_section_2 = FactoryGirl.create(:section, course_id: @course.id, id: @section.id - 2)
+
+        expect(@section.previous).to eq(previous_section)
+      end
+    end
+
+    context "there is no previous section" do
+      it "returns nil" do
+        build_course
+
+        expect(@section.previous).to eq(nil)
       end
     end
   end

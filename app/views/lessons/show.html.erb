@@ -8,11 +8,29 @@
 </div>
 
 <div class="lesson-nav">
-  <%= link_to 'Next Lesson', course_lesson_path(@lesson.course, @lesson.next), class: 'btn btn-sm btn-primary' if @lesson.next %>
-  <%= link_to 'Previous Lesson', course_lesson_path(@lesson.course, @lesson.previous), class: 'btn btn-sm btn-warning' if @lesson.previous %>
+  <div class="text-center">
+    <div class="btn-group">
+      <% if @lesson.previous %>
+        <%= link_to 'Previous', course_lesson_path(@lesson.course, @lesson.previous), class: 'btn btn-sm btn-default' %>
+      <% else %>
+        <% if @lesson.section.previous %>
+          <%= link_to 'Previous', course_lesson_path(@lesson.course, @lesson.section.previous.first_lesson), class: 'btn btn-sm btn-default' %>
+        <% end %>
+      <% end %>
 
-  <% unless @lesson.next %>
+      <% if @lesson.next %>
+        <%= link_to 'Next', course_lesson_path(@lesson.course, @lesson.next), class: 'btn btn-sm btn-default' %>
+      <% else %>
+        <% if @lesson.section.next %>
+          <%= link_to 'Next', course_lesson_path(@lesson.course, @lesson.section.next.first_lesson), class: 'btn btn-sm btn-default' %>
+        <% end %>
+      <% end %>
+      
+    </div><!-- btn-group -->
+  </div><!-- text-center-->
+  <hr>    
+
+  <% if @lesson.section.next.nil? %>
     <p class="text-center">END OF SECTION</p>
-    <%= link_to 'Next Section', course_lesson_path(@lesson.course, @lesson.section.next.first_lesson), class: 'btn btn-primary' if @lesson.section.next %>
   <% end %>
 </div>

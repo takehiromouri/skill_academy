@@ -11,4 +11,8 @@ class Section < ActiveRecord::Base
   def next
     course.sections.where("id > ?", self.id).first
   end
+
+  def previous
+    course.sections.where("id < ?", self.id).last
+  end
 end

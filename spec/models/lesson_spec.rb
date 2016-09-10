@@ -6,6 +6,7 @@ RSpec.describe Lesson, type: :model do
       it "returns the next lesson" do
         build_course
         next_lesson = FactoryGirl.create(:lesson, section_id: @section.id, id: @lesson.id + 1)
+        next_lesson_2 = FactoryGirl.create(:lesson, section_id: @section.id, id: @lesson.id + 2)
 
         expect(@lesson.next).to eq(next_lesson)
       end
@@ -25,6 +26,7 @@ RSpec.describe Lesson, type: :model do
       it "returns the previous lesson" do
         build_course
         previous_lesson = FactoryGirl.create(:lesson, section_id: @section.id, id: @lesson.id - 1)
+        previous_lesson_2 = FactoryGirl.create(:lesson, section_id: @section.id, id: @lesson.id - 2)
 
         expect(@lesson.previous).to eq(previous_lesson)
       end
