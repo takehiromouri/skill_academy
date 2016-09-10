@@ -6,7 +6,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = current_user.enrollments.create(course_id: params[:course_id])
 
     if @enrollment.valid?
-      # send email here
+      UserMailer.enrolled(current_user, @enrollment.course).deliver
       flash[:success] = "Congratulations! You're enrolled for this course!"
     else
       flash[:danger] = "Woops! Looks like there was an error. Please try again."

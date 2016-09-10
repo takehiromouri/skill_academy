@@ -9,6 +9,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-8">
+        <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, rating_path(rating), method: :delete, class: 'pull-right', data: {confirm: "Are you sure?"} if rating.user == current_user %>
         <p><%= rating.comment %></p>
       </div>
     </div>

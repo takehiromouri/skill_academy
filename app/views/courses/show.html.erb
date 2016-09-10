@@ -29,14 +29,15 @@
 
     <section class="student-reviews">
       <h3 class="text-center">Student Reviews</h3>
-
-      <% if @course.ratings.present? %>
+      
         <div id="ratings-container">
-          <%= render partial: "ratings", locals: {ratings: @course.ratings} %>
+          <% if @course.ratings.present? %>
+            <%= render partial: "ratings", locals: {ratings: @course.ratings} %>
+          <% else %>
+            <h4 class="text-center">There are no reviews for this course yet!</h4>
+          <% end %> 
         </div>
-      <% else %>
-        <h4 class="text-center">There are no reviews for this course yet!</h4>
-      <% end %> 
+      
     </section><!-- student-reviews -->
 
   </div>
@@ -94,7 +95,7 @@
         </li> 
       <% end %>
 
-      <% unless current_user.ratings.where(course_id: @course.id).present? %>
+      <% unless current_user.ratings.where(course_id: @course.id).present? || @course.start_time <= DateTime.now %>
 
         <h3>RATE THIS COURSE</h3>
 

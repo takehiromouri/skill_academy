@@ -47,6 +47,9 @@ gem 'impressionist'
 # enum 
 gem 'enum_help'
 
+# ENV Variables
+gem "figaro"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

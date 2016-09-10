@@ -17,9 +17,4 @@ class User < ActiveRecord::Base
   def name
     self.first_name + " " + self.last_name
   end
-
-  def enrolled?(course)
-    return true if Enrollment.where(course_id: course.id, user_id: self.id)
-    false
-  end
 end

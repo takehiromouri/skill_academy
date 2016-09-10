@@ -32,6 +32,17 @@ RSpec.describe EnrollmentsController, type: :controller do
             post :create, course_id: course.id
           }.to change(Enrollment, :count).by(1)
         end
+
+        it "sends an email" do
+          user = FactoryGirl.create(:user)
+          course = FactoryGirl.create(:course, user_id: user.id + 1)
+
+          sign_in user
+
+          expect {
+            post :create, course_id: course.id
+          }.to change { ActionMailer::Base.deliveries.count }.by(1)
+        end
       end
 
       context "user has already enrolled in the course" do
@@ -45,6 +56,18 @@ RSpec.describe EnrollmentsController, type: :controller do
           expect {
             post :create, course_id: course.id
           }.to change(Enrollment, :count).by(0)
+        end
+
+        it "doesn't send an email" do
+          user = FactoryGirl.create(:user)
+          course = FactoryGirl.create(:course, user_id: user.id)
+          FactoryGirl.create(:enrollment, course_id: course.id, user_id: user.id)
+
+          sign_in user
+
+          expect {
+            post :create, course_id: course.id
+          }.to change { ActionMailer::Base.deliveries.count }.by(0)
         end
       end
     end

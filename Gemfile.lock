@@ -99,6 +99,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    figaro (1.1.1)
+      thor (~> 0.14)
     font-awesome-sass (4.6.2)
       sass (>= 3.2)
     globalid (0.3.7)
@@ -245,6 +247,7 @@ DEPENDENCIES
   elasticsearch-rails!
   enum_help
   factory_girl_rails (~> 4.0)
+  figaro
   font-awesome-sass (~> 4.6.2)
   impressionist
   jbuilder (~> 2.0)

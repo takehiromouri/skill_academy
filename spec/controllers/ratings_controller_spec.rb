@@ -2,29 +2,39 @@ require 'rails_helper'
 
 RSpec.describe RatingsController, type: :controller do
   describe "POST #create" do
-    context "user is not the course instructor" do
-      it "creates a new rating" do
-        user = FactoryGirl.create(:user)        
-        course = FactoryGirl.create(:course, user_id: user.id + 1)        
+    context "course has started" do
+      context "user is not the course instructor" do
+        it "creates a new rating" do
+          user = FactoryGirl.create(:user)        
+          course = FactoryGirl.create(:course, user_id: user.id + 1)        
 
-        sign_in user
+          sign_in user
 
-        expect {
-          post :create, course_id: course.id, rating: FactoryGirl.attributes_for(:rating), format: :js
-        }.to change(Rating, :count).by(1)
+          expect {
+            post :create, course_id: course.id, rating: FactoryGirl.attributes_for(:rating), format: :js
+          }.to change(Rating, :count).by(1)
+          expect(response.status).to redirect_to course_path(course)
+        end
+      end
+
+      context "user is the course instructor" do
+        it "should not create a new rating" do
+          user = FactoryGirl.create(:user)        
+          course = FactoryGirl.create(:course, user_id: user.id)
+
+          sign_in user
+
+          expect {
+            post :create, course_id: course.id, rating: FactoryGirl.attributes_for(:rating), format: :js
+          }.to change(Rating, :count).by(0)
+          expect(response.status).to redirect_to course_path(course)
+        end
       end
     end
 
-    context "user is the course instructor" do
-      it "should not create a new rating" do
-        user = FactoryGirl.create(:user)        
-        course = FactoryGirl.create(:course, user_id: user.id)
+    context "course has not started" do
+      it "does not create a new rating" do
 
-        sign_in user
-
-        expect {
-          post :create, course_id: course.id, rating: FactoryGirl.attributes_for(:rating), format: :js
-        }.to change(Rating, :count).by(0)
       end
     end
   end

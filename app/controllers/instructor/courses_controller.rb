@@ -13,7 +13,7 @@ class Instructor::CoursesController < ApplicationController
   def create
     @course = current_user.courses.create(course_params)
     if @course.valid?
-      # Send Mail
+      UserMailer.course_created(current_user, @course).deliver
       flash[:success] = "Congratulations! Your course has been created!"
       redirect_to course_path(@course) 
     else
