@@ -3,8 +3,8 @@
 <%= simple_form_for @course, url: instructor_courses_path do |f| %>
   <%= f.input :title, placeholder: 'Title of Course' %>
   <%= f.input :description, placeholder: 'Description of Course', as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } } %>
-  <%= f.input :start_time, minute_step: 30, label: 'Start Time (Optional, leave blank for online)' %>
-  <%= f.input :end_time, minute_step: 30, label: 'End Time (Optional)' %>
+  <%= f.input :start_time, minute_step: 30, label: 'Start Time (Optional, leave blank for online)', include_blank: true %>
+  <%= f.input :end_time, minute_step: 30, label: 'End Time (Optional)', include_blank: true %>
   <%= f.input :category, collection: Course.categories.keys.map(&:capitalize) %>
   <%= f.input :price %>
   <%= f.input :target, placeholder: 'Who is this event for? Ex) Students who want to learn Ruby on Rails.' %>

@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
   is_impressionable
   
   validates :title, :description, :price, :category, :user_id, presence: true
-  validates :price, numericality: { greater_than: 0 }
+  validates :price, numericality: { greater_than: -1 }
 
   belongs_to :instructor, class_name: "User", foreign_key: :user_id
   has_many :enrollments
