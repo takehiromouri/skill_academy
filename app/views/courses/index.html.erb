@@ -5,30 +5,27 @@
   </p>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-3">
       <%= simple_form_for :course, url: courses_path, method: :get, class: 'form-inline' do |f| %>
 
         <div class="row">
-          <div class="col-xs-12 col-sm-6">
-            <%= f.input :sort_by_column, collection: Course::SORTABLE.map{|k,v| [v,k]}, label: false, class: 'form-control', include_blank: false %>
-          </div>
-          <div class="col-xs-12 col-sm-6">
-            <%= f.input :sort_order, collection: {"Ascending" => :ASC, "Descending" => :DESC}, label: false, class: 'form-control', include_blank: false %>
-          </div>
+          <div class="col-xs-12">
+            <%= f.input :sort_by_column, collection: Course::SORTABLE.map{|k,v| [v,k]}, label: false, class: 'form-control', include_blank: false, selected: params[:course][:sort_by_column] %>
+          </div>          
         </div>
       <% end %>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-6">
       <%= form_tag courses_path, method: :get, class: 'form-inline' do %>
         <%= text_field_tag :query, params[:query], placeholder: 'Search for a course', class: 'form-control' %>
         <%= submit_tag "Search", name: nil, class: 'btn btn-info' %>
       <% end %>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-4">      
+    <div class="col-xs-12 col-sm-6 col-md-3">      
       <%= simple_form_for :course, url: courses_path, method: :get, class: 'form-inline' do |f| %>
-        <%= f.input :category, collection: Course.categories.keys, label: false, class: 'form-control', include_blank: false %>
+        <%= f.input :category, collection: Course.categories.keys, label: false, class: 'form-control', include_blank: false, selected: params[:course][:category] %>
       <% end %>
     </div>
   </div>

@@ -3,6 +3,7 @@ require 'elasticsearch/model'
 class Course < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  include Filterable
 
   is_impressionable
   
@@ -19,6 +20,9 @@ class Course < ActiveRecord::Base
 
   enum category: [:Business, :Programming, :Design, :Excel, :Presentations]
 
+  scope :sort_by_column, -> (sort_by_column) { order("#{sort_by_column} DESC") }
+  scope :category, -> (category) { where(category: categories[category]) }
+
   SORTABLE = {
     :price => "Price", 
     :created_at => "Posted", 
@@ -28,6 +32,10 @@ class Course < ActiveRecord::Base
   }
 
   mount_uploader :photo, PhotoUploader
+
+  def self.sort_order(order)
+    self.reverse if order.downcase == "desc"      
+  end
 
   def course_location
     location.blank? ? "Online" : location
