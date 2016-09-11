@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911162917) do
+ActiveRecord::Schema.define(version: 20160911174908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160911162917) do
     t.string   "photo"
     t.float    "average_rating",    default: 0.0
     t.integer  "enrollments_count"
+    t.integer  "views"
   end
 
   add_index "courses", ["user_id"], name: "index_courses_on_user_id", using: :btree

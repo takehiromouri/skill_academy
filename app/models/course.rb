@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   include Filterable
+  include Sortable
 
   is_impressionable
   
@@ -28,7 +29,8 @@ class Course < ActiveRecord::Base
     :created_at => "Posted", 
     :average_rating => "Average Rating",
     :start_time => "Start Time",
-    :views => "Views"  
+    :impressionist_count => "Views",
+    :enrollments_count => "Enrollments"
   }
 
   mount_uploader :photo, PhotoUploader
