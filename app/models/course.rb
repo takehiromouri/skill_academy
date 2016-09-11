@@ -28,14 +28,10 @@ class Course < ActiveRecord::Base
     :created_at => "Posted", 
     :average_rating => "Average Rating",
     :start_time => "Start Time",
-    :views => "Views"
+    :views => "Views"  
   }
 
   mount_uploader :photo, PhotoUploader
-
-  def self.sort_order(order)
-    self.reverse if order.downcase == "desc"      
-  end
 
   def course_location
     location.blank? ? "Online" : location

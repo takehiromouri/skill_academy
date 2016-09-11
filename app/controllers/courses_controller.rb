@@ -13,18 +13,6 @@ class CoursesController < ApplicationController
       @sort_by_column = params[:course][:sort_by_column] ? params[:course][:sort_by_column] : nil
       @category = params[:course][:category] ? params[:course][:category] : nil
     end
-    # if params[:course]
-    #   if params[:course][:sort_by_column].present?
-    #     if params[:course][:sort_by_column] == "views"
-    #       @courses = Course.all.sort_by(&:impressionist_count)
-    #     else
-    #       @courses = Course.order("#{params[:course][:sort_by_column]} #{params[:course][:sort_order]}")
-    #     end
-    #   elsif params[:course][:category].present?
-    #     @courses = Course.where(category: params[:course][:category])
-    #                      .order("average_rating DESC")
-    #   end 
-    # end
   end
 
   def show
