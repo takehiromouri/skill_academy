@@ -2,7 +2,7 @@
 
 <%= simple_form_for @lesson, url: instructor_section_lessons_path(params[:section_id]) do |f| %>
   <%= f.input :title %>
-  <%= f.input :content %>
+  <%= f.input :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } } %>
   <%= f.submit "Submit", class: 'btn btn-primary', data: { disable_with: "Creating new lesson..." }  %>
 <% end %>
 

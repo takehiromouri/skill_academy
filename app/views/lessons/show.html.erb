@@ -1,10 +1,26 @@
-<%= link_to 'Back to Course', course_path(@lesson.course) %>
+<%= link_to '<i class="fa fa-caret-left" aria-hidden="true"></i> Back to Course'.html_safe, course_path(@lesson.course) %>
 
 <h1><%= @lesson.title %></h1>
 
+<div class="row">
+  <div class="col-xs-12 col-md-9">
+    <div class="lesson-content">
+      <%= sanitize @lesson.content %>
+    </div>
+  </div>
 
-<div class="lesson-content">
-  <%= sanitize @lesson.content %>
+  <div class="col-xs-12 col-md-3">
+    <ul class="lesson-sidebar nav nav-pills nav-stacked">
+      <% @sections.each do |section| %>        
+          <li><h4><%= section.title %></h4></li>
+          
+          <% section.lessons.each do |lesson| %>          
+            <li><%= link_to lesson.title, course_lesson_path(course_id: section.course.id, id: lesson.id) %></li>        
+          <% end %> 
+        
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <div class="lesson-nav">

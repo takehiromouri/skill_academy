@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -36,6 +36,7 @@ gem 'simple_form'
 
 # photo uploading
 gem 'carrierwave'
+gem 'mini_magick'
 
 # elasticsearch
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
@@ -49,6 +50,9 @@ gem 'enum_help'
 
 # ENV Variables
 gem "figaro"
+
+# Text Editor
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

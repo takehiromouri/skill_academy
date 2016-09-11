@@ -8,6 +8,7 @@ class LessonsController < ApplicationController
   
   def show     
     @lesson = current_lesson
+    @sections = current_course.sections.includes(:lessons).order(:id)
   end
 
   private

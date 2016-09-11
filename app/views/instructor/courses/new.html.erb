@@ -2,7 +2,7 @@
 
 <%= simple_form_for @course, url: instructor_courses_path do |f| %>
   <%= f.input :title, placeholder: 'Title of Course' %>
-  <%= f.input :description, placeholder: 'Description of Course' %>
+  <%= f.input :description, placeholder: 'Description of Course', as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } } %>
   <%= f.input :start_time, minute_step: 30 %>
   <%= f.input :end_time, minute_step: 30 %>
   <%= f.input :category, collection: Course.categories.keys.map(&:capitalize) %>

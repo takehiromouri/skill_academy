@@ -2,16 +2,26 @@
 
 <h1><%= @course.title %></h1>
 
-<% @sections.each do |section| %>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <% @sections.each do |section| %>        
+      <div class="section-box">
+        <h3><%= section.title %></h3>
         
-  <div class="section-box">
-    <h3><%= section.title %></h3>
-    
-    <% section.lessons.each do |lesson| %>
-      <div class="lesson-box">
-        <h4><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></h4>
+        <% section.lessons.each do |lesson| %>
+          <div class="lesson-box">
+            <h4><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></h4>
+          </div>
+        
+        <% end %> 
       </div>
-    
-    <% end %> 
+    <% end %>
   </div>
-<% end %>
+
+  <div class="col-xs-12 col-md-6">
+    <div class="well">
+      <%= simple_format @course.description %>
+    </div>
+  </div>
+</div>
+
