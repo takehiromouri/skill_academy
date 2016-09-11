@@ -8,6 +8,11 @@ class CoursesController < ApplicationController
     @courses = Course.order("average_rating DESC")
     @courses = Course.search(params[:query]).records if params[:query].present?    
     @courses = Course.filter(params[:course].slice(:sort_by_column, :category)) if params[:course]
+
+    if params[:course]
+      @sort_by_column = params[:course][:sort_by_column] ? params[:course][:sort_by_column] : nil
+      @category = params[:course][:category] ? params[:course][:category] : nil
+    end
     # if params[:course]
     #   if params[:course][:sort_by_column].present?
     #     if params[:course][:sort_by_column] == "views"
