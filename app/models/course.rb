@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
 
   is_impressionable
   
-  validates :title, :description, :price, :start_time, :end_time, :category, :user_id, :location, presence: true
+  validates :title, :description, :price, :category, :user_id, presence: true
   validates :price, numericality: { greater_than: 0 }
 
   belongs_to :instructor, class_name: "User", foreign_key: :user_id
@@ -28,6 +28,30 @@ class Course < ActiveRecord::Base
   }
 
   mount_uploader :photo, PhotoUploader
+
+  def course_location
+    location.blank? ? "Online" : location
+  end
+
+  def course_address
+    address.blank? ? "Online" : location
+  end
+
+  def start
+    if start_time.blank?
+      "Ongoing"
+    else
+      start_time.in_time_zone.strftime("%m/%d/%Y %l:%M %p")
+    end
+  end
+
+  def end
+    if end_time.blank?
+      "Ongoing"
+    else
+      end_time.in_time_zone.strftime("%m/%d/%Y %l:%M %p")
+    end
+  end
 
   def self.search(*args)
     __elasticsearch__.search(*args)

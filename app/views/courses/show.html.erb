@@ -60,12 +60,12 @@
 
       <li>
         <strong>Start Time</strong><br>
-        <%= display_datetime(@course.start_time) %>
+        <%= @course.start %>
       </li>
 
       <li>
         <strong>End Time</strong><br>
-        <%= display_datetime(@course.end_time) %>
+        <%= @course.end %>
       </li>
 
       <li>
@@ -75,12 +75,12 @@
 
       <li>
         <strong>Location</strong><br>
-        <%= @course.location %>
+        <%= @course.course_location %>
       </li>
 
       <li>
         <strong>Address</strong><br>
-        <%= @course.address %>
+        <%= @course.course_address %>
       </li>
 
       <% if @instructor == current_user %>

@@ -1,6 +1,5 @@
 class CreateLessons < ActiveRecord::Migration
   def change
-    drop_table :lessons
     create_table :lessons do |t|
       t.string :title
       t.integer :section_id
